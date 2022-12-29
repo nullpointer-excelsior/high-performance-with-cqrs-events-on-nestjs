@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/northwind-services/src",
+  "monorepo": true,
+  "root": "apps/northwind-services",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/northwind-services/tsconfig.app.json"
+  },
+  "projects": {
+    "northwind-services": {
+      "type": "application",
+      "root": "apps/northwind-services",
+      "entryFile": "main",
+      "sourceRoot": "apps/northwind-services/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/northwind-services/tsconfig.app.json"
+      }
+    },
+    "southwind-sync": {
+      "type": "application",
+      "root": "apps/southwind-sync",
+      "entryFile": "main",
+      "sourceRoot": "apps/southwind-sync/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/southwind-sync/tsconfig.app.json"
+      }
+    },
+    "shared": {
+      "type": "library",
+      "root": "libs/persistence",
+      "entryFile": "index",
+      "sourceRoot": "libs/persistence/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/persistence/tsconfig.lib.json"
+      }
+    },
+    "southwind-job-synchronizer": {
+      "type": "application",
+      "root": "apps/southwind-job-synchronizer",
+      "entryFile": "main",
+      "sourceRoot": "apps/southwind-job-synchronizer/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/southwind-job-synchronizer/tsconfig.app.json"
+      }
+    },
+    "event-queue": {
+      "type": "library",
+      "root": "libs/event-queue",
+      "entryFile": "index",
+      "sourceRoot": "libs/event-queue/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/event-queue/tsconfig.lib.json"
+      }
+    },
+    "northwind-legacy": {
+      "type": "application",
+      "root": "apps/northwind-legacy",
+      "entryFile": "main",
+      "sourceRoot": "apps/northwind-legacy/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/northwind-legacy/tsconfig.app.json"
+      }
+    }
+  }
+}
