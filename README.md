@@ -1,50 +1,18 @@
-# Nestjs Northwind Arquitectura Hexagonal
+# Arquitectura de alto rendimiento con CQRS y eventos sobre NestJs 
 
-El siguiente proyecto tiene por finalidad implementar una aplicación basada en la base de datos NorthWind utilizando una arquitectura hexagonal con un enfoque a ejemplos prácticos y búscando escenarios realistas de arquitectura de software y microservicios. La explicación de la implementación de los códigos, patrones de diseño y casos de uso 
-lo puedes encontrar en los siguientes links:
+El siguiente proyecto presenta una arquitectura de microservicios de alta concurrencia empleando una solución a nivel de diseño del sistema. Esta solución se enfoca en separar las operaciones de lectura y escritura mediante CQRS incluyendo la separación del modelo de datos en un motor para la lectura y otro para la escritura. Nos ayudaremos de una arquitectura orientada a eventos para integrar de forma desacoplada nuevos componentes que ayudaran a sincronizar el estado de los modelos de datos antes mencionados.
 
-[Arquitectura hexagonal con Nestjs Part I](https://nullpointer-excelsior.github.io/posts/implementando-hexagonal-con-nestjs-part1/)
+La idea es poder realizar pruebas de carga sobre una API basada en el modelo de datos Northwind un esquema que representa órdenes de compra, productos, un stock básico, clientes, proveedores y vendedores.
 
+Estas pruebas serán hechas con Locust una librería Python especializada en pruebas de carga con un entorno gráfico.
 
-## Ejecución del proyecto
+Levantaremos la infraestructura mediante docker-compose así podremos levantar el stack de aplicaciones y tendremos donde tendremos disponible tanto la versión inicial como la mejorada capaza de soportar un ambiente concurrente.
 
-Para levantar la base de datos de Northwind debes tener instalado docker y docker-compose
-```bash
-#!/bin/bash
-cd northwind-db/
-docker-compose up -d
-# verify northwind-db container status
-docker ps -a
-```
+## Despliegue del laboratorio
+
+- [Infraestructura](application-infraestructure)
+- [Stack de aplicaciones](application-stack)
+- [Pruebas de Carga](application-stack)
 
 
-para levantar la aplicación te recomiendo nodejs 14 en adelante si tienes nvm mucho mejor
-```bash
-#!/bin/bash
-
-#Node virtual environment
-nvm use 14
-npm install
-npm run start:dev
-```
-
-Si la aplicación levanto exitosamente crear el siguiente archivo `newProduct.json`
-
-```json
-{
-  "name": "Quesito la vaquita",
-  "price": 2990,
-  "categoryId": 1,
-  "supplierId": 1
-}
-```
-y realizamos la siguiente petición con curl y jq para ver de forma formateada la salida
-
-```bash
-curl -s -X POST -d "$(cat newProduct.json)" -H "Content-Type: application/json" http://localhost:3000/product | jq
-```
-
-puedes ir cambiando los valores de supplierId o categoryid para ver como se comporta en los errores 
-
-
-
+**Author**: Benjamín 
